@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>集体记忆编织器 (Collective Memory Weaver)</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f5f7fa;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .memory-card {
+      transition: transform 0.2s;
+    }
+    .memory-card:hover {
+      transform: translateY(-3px);
+    }
+    .tab-active {
+      color: #4f46e5;
+      border-bottom: 2px solid #4f46e5;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg overflow-hidden my-8">
+    <!-- Header -->
+    <div class="bg-indigo-900 text-white p-4 rounded-t-lg">
+      <h1 class="text-2xl font-bold">夏日海滨之旅 (Summer Beach Trip)</h1>
+      <div class="flex justify-between items-center mt-2 text-sm">
+        <div class="flex items-center">
+          <i class="fas fa-users mr-1"></i>
+          <span>5 位参与者</span>
+        </div>
+        <div class="flex items-center">
+          <i class="far fa-clock mr-1"></i>
+          <span>2023年8月12日 - 8月15日</span>
+        </div>
+        <div class="px-2 py-1 bg-indigo-700 rounded-full text-xs">
+          收集中
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex border-b border-gray-200">
+      <button class="flex-1 py-3 font-medium tab-active" id="tab-contribute">
+        贡献记忆
+      </button>
+      <button class="flex-1 py-3 font-medium text-gray-500" id="tab-woven">
+        编织成果
+      </button>
+      <button class="flex-1 py-3 font-medium text-gray-500" id="tab-interactions">
+        互动讨论
+      </button>
+    </div>
+    
+    <!-- Contribute View -->
+    <div class="p-4" id="view-contribute">
+      <div class="mb-6">
+        <h2 class="text-lg font-semibold mb-2">添加新记忆</h2>
+        <div class="grid grid-cols-3 gap-3">
+          <button class="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100">
+            <div class="bg-blue-100 p-2 rounded-full mb-2">
+              <i class="fas fa-pencil-alt text-blue-600"></i>
+            </div>
+            <span class="text-sm">文字记忆</span>
+          </button>
+          <button class="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100">
+            <div class="bg-green-100 p-2 rounded-full mb-2">
+              <i class="fas fa-microphone text-green-600"></i>
+            </div>
+            <span class="text-sm">语音记忆</span>
+          </button>
+          <button class="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100">
+            <div class="bg-purple-100 p-2 rounded-full mb-2">
+              <i class="fas fa-upload text-purple-600"></i>
+            </div>
+            <span class="text-sm">图像/素描</span>
+          </button>
+        </div>
+      </div>
+      
+      <div>
+        <div class="flex justify-between items-center mb-3">
+          <h2 class="text-lg font-semibold">记忆片段</h2>
+          <div class="text-sm text-gray-500">共 3 条</div>
+        </div>
+        
+        <div class="space-y-4">
+          <!-- Memory 1 -->
+          <div class="border border-gray-200 rounded-lg p-4 memory-card">
+            <div class="flex justify-between items-start mb-2">
+              <div class="font-medium">李明</div>
+              <div class="text-xs text-gray-500">2分钟前</div>
+            </div>
+            
+            <p class="text-gray-700 mb-2">我记得那天阳光很强烈，沙滩上人很多。我们在靠近岩石的地方野餐，有海鸥飞来偷吃我们的食物。</p>
+            
+            <div class="flex items-center text-xs text-gray-500">
+              <span class="bg-gray-100 px-2 py-1 rounded-full">情绪: 怀念</span>
+            </div>
+          </div>
+
+          <!-- Memory 2 -->
+          <div class="border border-gray-200 rounded-lg p-4 memory-card">
+            <div class="flex justify-between items-start mb-2">
+              <div class="font-medium">王华</div>
+              <div class="text-xs text-gray-500">10分钟前</div>
+            </div>
+            
+            <div class="mb-2">
+              <img src="/api/placeholder/400/200" alt="sketched memory" class="w-full h-40 object-cover rounded-md bg-gray-100">
+              <p class="text-sm text-gray-600 mt-1">我们在日落时拍的合影剪影</p>
+            </div>
+            
+            <div class="flex items-center text-xs text-gray-500">
+              <span class="bg-gray-100 px-2 py-1 rounded-full">情绪: 平静</span>
+            </div>
+          </div>
+
+          <!-- Memory 3 -->
+          <div class="border border-gray-200 rounded-lg p-4 memory-card">
+            <div class="flex justify-between items-start mb-2">
+              <div class="font-medium">张三</div>
+              <div class="text-xs text-gray-500">1小时前</div>
+            </div>
+            
+            <div class="bg-gray-100 rounded-md p-3 flex items-center justify-between mb-2">
+              <div class="flex items-center">
+                <i class="fas fa-play text-gray-700 mr-2"></i>
+                <span class="text-gray-700">语音记忆 (0:45)</span>
+              </div>
+            </div>
+            
+            <div class="flex items-center text-xs text-gray-500">
+              <span class="bg-gray-100 px-2 py-1 rounded-full">情绪: 兴奋</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Woven View (Hidden by default) -->
+    <div class="p-4 hidden" id="view-woven">
+      <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 mb-4">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">集体记忆视觉叙事</h2>
+          <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">已生成</span>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+          <div class="h-64 bg-gray-100 rounded-md flex justify-center items-center mb-4">
+            <img src="/api/placeholder/600/400" alt="AI生成的集体记忆视觉化" class="h-full rounded-md">
+          </div>
+          <p class="text-sm text-gray-700">
+            AI基于5位参与者的记忆片段，生成了这幅海滩日落的场景。图中融合了李明提到的海鸥、王华描述的合影剪影，以及张三记忆中提到的彩色遮阳伞。图像捕捉了大家共同记得的温暖日落色调，同时保留了不同视角的独特记忆元素。
+          </p>
+        </div>
+        
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">记忆叙事文本</h2>
+          <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">已生成</span>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-4">
+          <p class="text-gray-700 text-sm italic">
+            "那是2023年8月中旬的一个炎热下午，我们五个人来到了海滩。李明记得阳光格外强烈，沙滩上人来人往，充满活力。我们在靠近岩石的地方铺开野餐垫，正如王华sketched的那样，各自找到了舒适的位置。张三带来了他标志性的蓝色遮阳伞，为我们提供了一片阴凉。
+            <br/><br/>
+            海滩上热闹非凡，陈小红记得有孩子们在堆沙堡，他们的笑声混合着海浪的节奏。我们分享了食物，正如李明记得的那样，有几只大胆的海鸥飞来偷吃我们的三明治，引得大家又惊又笑。
+            <br/><br/>
+            日落时分，天空渐渐变成了橙红色，映照在平静的海面上。那是王华印象最深刻的时刻，我们站在沙滩上，面对大海，拍下了那张现在已成为集体记忆的剪影照片..."
+          </p>
+        </div>
+      </div>
+      
+      <div class="bg-white border border-gray-200 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-medium">生成参数</h3>
+          <button class="text-sm text-indigo-600">编辑</button>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div>
+            <div class="text-gray-500 mb-1">叙事风格</div>
+            <div>抒情回忆式</div>
+          </div>
+          <div>
+            <div class="text-gray-500 mb-1">视觉风格</div>
+            <div>写实水彩</div>
+          </div>
+          <div>
+            <div class="text-gray-500 mb-1">情感基调</div>
+            <div>怀旧、温暖</div>
+          </div>
+          <div>
+            <div class="text-gray-500 mb-1">冲突处理</div>
+            <div>保留差异并列呈现</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactions View (Hidden by default) -->
+    <div class="p-4 hidden" id="view-interactions">
+      <div class="mb-4">
+        <h2 class="text-lg font-semibold mb-2">讨论与协商</h2>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div class="flex items-start mb-4">
+            <div class="bg-blue-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+              <span class="text-blue-800 font-medium text-sm">李</span>
+            </div>
+            <div>
+              <div class="font-medium mb-1">李明</div>
+              <p class="text-sm text-gray-700">
+                我觉得AI生成的视觉中海鸥太大了，实际上它们没有那么引人注目。不过整体氛围捕捉得很好，特别是日落的颜色。
+              </p>
+              <div class="text-xs text-gray-500 mt-1">23分钟前</div>
+            </div>
+          </div>
+          
+          <div class="flex items-start mb-4">
+            <div class="bg-purple-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+              <span class="text-purple-800 font-medium text-sm">王</span>
+            </div>
+            <div>
+              <div class="font-medium mb-1">王华</div>
+              <p class="text-sm text-gray-700">
+                我同意关于海鸥的评论，但我记得的确有海鸥打扰我们的野餐。或许可以保留海鸥但调整它们的存在感？文本叙事中提到我们拍了剪影照片，这点很准确，那是我最珍贵的记忆片段。
+              </p>
+              <div class="text-xs text-gray-500 mt-1">15分钟前</div>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="bg-green-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+              <span class="text-green-800 font-medium text-sm">AI</span>
+            </div>
+            <div>
+              <div class="font-medium mb-1">AI助手</div>
+              <p class="text-sm text-gray-700">
+                基于李明和王华的反馈，我可以调整记忆视觉中海鸥的呈现方式，使其作为背景元素而非焦点。同时保留文本叙事中关于海鸥的部分，因为这是共享记忆的一部分。我注意到大家对日落剪影照片的记忆高度一致，这将作为视觉重点保留。
+                <br/><br/>
+                是否需要我根据这些讨论重新生成视觉叙事？
+              </p>
+              <div class="text-xs text-gray-500 mt-1">5分钟前</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h2 class="text-lg font-semibold mb-2">冲突与差异</h2>
+        <div class="border border-gray-200 rounded-lg">
+          <div class="p-4 border-b border-gray-200">
+            <h3 class="font-medium mb-2">记忆冲突点 #1: 天气状况</h3>
+            <div class="bg-yellow-50 p-3 rounded-md mb-3">
+              <div class="flex items-center justify-between mb-2">
+                <div class="font-medium text-sm">检测到的差异</div>
+                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">轻度冲突</span>
+              </div>
+              <p class="text-sm text-gray-700">
+                李明和张三记得"阳光很强烈"，而陈小红描述为"多云偶有日照"。
+              </p>
+            </div>
+            
+            <div class="flex space-x-2">
+              <button class="bg-indigo-600 text-white text-sm rounded-md px-3 py-1.5">协商解决</button>
+              <button class="border border-gray-300 text-gray-700 text-sm rounded-md px-3 py-1.5">保留差异</button>
+            </div>
+          </div>
+          
+          <div class="p-4">
+            <h3 class="font-medium mb-2">记忆冲突点 #2: 野餐地点</h3>
+            <div class="bg-yellow-50 p-3 rounded-md mb-3">
+              <div class="flex items-center justify-between mb-2">
+                <div class="font-medium text-sm">检测到的差异</div>
+                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">轻度冲突</span>
+              </div>
+              <p class="text-sm text-gray-700">
+                李明记得"在靠近岩石的地方野餐"，而王华提到"在遮阳伞下的开阔沙滩上"。
+              </p>
+            </div>
+            
+            <div class="flex space-x-2">
+              <button class="bg-indigo-600 text-white text-sm rounded-md px-3 py-1.5">协商解决</button>
+              <button class="border border-gray-300 text-gray-700 text-sm rounded-md px-3 py-1.5">保留差异</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-gray-50 p-4 border-t border-gray-200">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="text-xs text-gray-500 mb-1">生成状态</div>
+          <div class="text-sm font-medium">
+            <span class="text-green-600">已收集 8/10 记忆片段</span>
+          </div>
+        </div>
+        <button class="bg-indigo-600 text-white rounded-md px-4 py-2 text-sm font-medium flex items-center">
+          <i class="fas fa-plus-circle mr-1"></i>
+          添加记忆
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple tab navigation
+    document.getElementById('tab-contribute').addEventListener('click', function() {
+      showView('contribute');
+      setActiveTab('contribute');
+    });
+    
+    document.getElementById('tab-woven').addEventListener('click', function() {
+      showView('woven');
+      setActiveTab('woven');
+    });
+    
+    document.getElementById('tab-interactions').addEventListener('click', function() {
+      showView('interactions');
+      setActiveTab('interactions');
+    });
+    
+    function showView(viewName) {
+      // Hide all views
+      document.getElementById('view-contribute').classList.add('hidden');
+      document.getElementById('view-woven').classList.add('hidden');
+      document.getElementById('view-interactions').classList.add('hidden');
+      
+      // Show selected view
+      document.getElementById('view-' + viewName).classList.remove('hidden');
+    }
+    
+    function setActiveTab(tabName) {
+      // Remove active class from all tabs
+      document.getElementById('tab-contribute').classList.remove('tab-active');
+      document.getElementById('tab-contribute').classList.add('text-gray-500');
+      
+      document.getElementById('tab-woven').classList.remove('tab-active');
+      document.getElementById('tab-woven').classList.add('text-gray-500');
+      
+      document.getElementById('tab-interactions').classList.remove('tab-active');
+      document.getElementById('tab-interactions').classList.add('text-gray-500');
+      
+      // Add active class to selected tab
+      document.getElementById('tab-' + tabName).classList.add('tab-active');
+      document.getElementById('tab-' + tabName).classList.remove('text-gray-500');
+    }
+  </script>
+</body>
+</html>
