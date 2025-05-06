@@ -2,7 +2,7 @@
 
 “集体记忆编织器” (Collective Memory Weaver) 的概念性人机交互系统。该系统旨在利用人工智能（AI），特别是大型语言模型（LLM）、图像和声音生成模型，将一小群参与者关于共同经历或地点的碎片化、主观记忆（文本、语音、草图）融合编织成统一的、多视角的集体叙事。
 ## 实例结果
-![image](fig/1.png)
-![image](fig/2.png)
 ![image](fig/3.png)
+![image](fig/2.png)
+![image](fig/1.png)
 ![image](fig/4.png)
