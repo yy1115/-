@@ -61,19 +61,19 @@
       <div class="mb-6">
         <h2 class="text-lg font-semibold mb-2">添加新记忆</h2>
         <div class="grid grid-cols-3 gap-3">
-          <button class="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100">
+          <button id="btn-text-memory" class="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100 cursor-pointer">
             <div class="bg-blue-100 p-2 rounded-full mb-2">
               <i class="fas fa-pencil-alt text-blue-600"></i>
             </div>
             <span class="text-sm">文字记忆</span>
           </button>
-          <button class="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100">
+          <button id="btn-voice-memory" class="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100 cursor-pointer">
             <div class="bg-green-100 p-2 rounded-full mb-2">
               <i class="fas fa-microphone text-green-600"></i>
             </div>
             <span class="text-sm">语音记忆</span>
           </button>
-          <button class="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100">
+          <button id="btn-image-memory" class="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100 cursor-pointer">
             <div class="bg-purple-100 p-2 rounded-full mb-2">
               <i class="fas fa-upload text-purple-600"></i>
             </div>
@@ -111,7 +111,7 @@
             </div>
             
             <div class="mb-2">
-              <img src="/api/placeholder/400/200" alt="sketched memory" class="w-full h-40 object-cover rounded-md bg-gray-100">
+              <img src="image/image.png" alt="sketched memory" class="w-full h-40 object-cover rounded-md bg-gray-100">
               <p class="text-sm text-gray-600 mt-1">我们在日落时拍的合影剪影</p>
             </div>
             
@@ -152,7 +152,7 @@
         
         <div class="bg-white rounded-lg shadow-md p-4 mb-4">
           <div class="h-64 bg-gray-100 rounded-md flex justify-center items-center mb-4">
-            <img src="/api/placeholder/600/400" alt="AI生成的集体记忆视觉化" class="h-full rounded-md">
+            <img src="image/image2.png" alt="AI生成的集体记忆视觉化" class="h-full rounded-md">
           </div>
           <p class="text-sm text-gray-700">
             AI基于5位参与者的记忆片段，生成了这幅海滩日落的场景。图中融合了李明提到的海鸥、王华描述的合影剪影，以及张三记忆中提到的彩色遮阳伞。图像捕捉了大家共同记得的温暖日落色调，同时保留了不同视角的独特记忆元素。
@@ -178,24 +178,24 @@
       <div class="bg-white border border-gray-200 rounded-lg p-4">
         <div class="flex items-center justify-between mb-4">
           <h3 class="font-medium">生成参数</h3>
-          <button class="text-sm text-indigo-600">编辑</button>
+          <button id="btn-edit-params" class="text-sm text-indigo-600 hover:text-indigo-800">编辑</button>
         </div>
         <div class="grid grid-cols-2 gap-4 text-sm">
-          <div>
+          <div class="cursor-pointer hover:bg-gray-50 p-2 rounded" id="param-narrative-style">
             <div class="text-gray-500 mb-1">叙事风格</div>
-            <div>抒情回忆式</div>
+            <div id="narrative-style-value">抒情回忆式</div>
           </div>
-          <div>
+          <div class="cursor-pointer hover:bg-gray-50 p-2 rounded" id="param-visual-style">
             <div class="text-gray-500 mb-1">视觉风格</div>
-            <div>写实水彩</div>
+            <div id="visual-style-value">写实水彩</div>
           </div>
-          <div>
+          <div class="cursor-pointer hover:bg-gray-50 p-2 rounded" id="param-emotional-tone">
             <div class="text-gray-500 mb-1">情感基调</div>
-            <div>怀旧、温暖</div>
+            <div id="emotional-tone-value">怀旧、温暖</div>
           </div>
-          <div>
+          <div class="cursor-pointer hover:bg-gray-50 p-2 rounded" id="param-conflict-handling">
             <div class="text-gray-500 mb-1">冲突处理</div>
-            <div>保留差异并列呈现</div>
+            <div id="conflict-handling-value">保留差异并列呈现</div>
           </div>
         </div>
       </div>
@@ -206,46 +206,64 @@
       <div class="mb-4">
         <h2 class="text-lg font-semibold mb-2">讨论与协商</h2>
         <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
-          <div class="flex items-start mb-4">
-            <div class="bg-blue-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-              <span class="text-blue-800 font-medium text-sm">李</span>
+          <!-- 聊天消息区域 -->
+          <div id="chat-messages" class="max-h-96 overflow-y-auto mb-4">
+            <div class="flex items-start mb-4">
+              <div class="bg-blue-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-blue-800 font-medium text-sm">李</span>
+              </div>
+              <div>
+                <div class="font-medium mb-1">李明</div>
+                <p class="text-sm text-gray-700">
+                  我觉得AI生成的视觉中海鸥太大了，实际上它们没有那么引人注目。不过整体氛围捕捉得很好，特别是日落的颜色。
+                </p>
+                <div class="text-xs text-gray-500 mt-1">23分钟前</div>
+              </div>
             </div>
-            <div>
-              <div class="font-medium mb-1">李明</div>
-              <p class="text-sm text-gray-700">
-                我觉得AI生成的视觉中海鸥太大了，实际上它们没有那么引人注目。不过整体氛围捕捉得很好，特别是日落的颜色。
-              </p>
-              <div class="text-xs text-gray-500 mt-1">23分钟前</div>
+            
+            <div class="flex items-start mb-4">
+              <div class="bg-purple-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-purple-800 font-medium text-sm">王</span>
+              </div>
+              <div>
+                <div class="font-medium mb-1">王华</div>
+                <p class="text-sm text-gray-700">
+                  我同意关于海鸥的评论，但我记得的确有海鸥打扰我们的野餐。或许可以保留海鸥但调整它们的存在感？文本叙事中提到我们拍了剪影照片，这点很准确，那是我最珍贵的记忆片段。
+                </p>
+                <div class="text-xs text-gray-500 mt-1">15分钟前</div>
+              </div>
+            </div>
+            
+            <div class="flex items-start mb-4">
+              <div class="bg-green-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="text-green-800 font-medium text-sm">AI</span>
+              </div>
+              <div>
+                <div class="font-medium mb-1">AI助手</div>
+                <p class="text-sm text-gray-700">
+                  基于李明和王华的反馈，我可以调整记忆视觉中海鸥的呈现方式，使其作为背景元素而非焦点。同时保留文本叙事中关于海鸥的部分，因为这是共享记忆的一部分。我注意到大家对日落剪影照片的记忆高度一致，这将作为视觉重点保留。
+                  <br/><br/>
+                  是否需要我根据这些讨论重新生成视觉叙事？
+                </p>
+                <div class="text-xs text-gray-500 mt-1">5分钟前</div>
+              </div>
             </div>
           </div>
           
-          <div class="flex items-start mb-4">
-            <div class="bg-purple-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-              <span class="text-purple-800 font-medium text-sm">王</span>
+          <!-- 聊天输入区域 -->
+          <form id="chat-form" class="border-t border-gray-200 pt-4">
+            <div class="mb-3">
+              <label class="block text-gray-700 text-sm font-medium mb-2">您的名字</label>
+              <input type="text" id="chat-name" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="请输入您的名字" required>
             </div>
-            <div>
-              <div class="font-medium mb-1">王华</div>
-              <p class="text-sm text-gray-700">
-                我同意关于海鸥的评论，但我记得的确有海鸥打扰我们的野餐。或许可以保留海鸥但调整它们的存在感？文本叙事中提到我们拍了剪影照片，这点很准确，那是我最珍贵的记忆片段。
-              </p>
-              <div class="text-xs text-gray-500 mt-1">15分钟前</div>
+            <div class="mb-3">
+              <label class="block text-gray-700 text-sm font-medium mb-2">您的留言</label>
+              <textarea id="chat-message" class="w-full px-3 py-2 border border-gray-300 rounded-md h-20" placeholder="输入您的想法或反馈..." required></textarea>
             </div>
-          </div>
-          
-          <div class="flex items-start">
-            <div class="bg-green-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-              <span class="text-green-800 font-medium text-sm">AI</span>
+            <div class="flex justify-end">
+              <button type="submit" class="bg-indigo-600 text-white rounded-md px-4 py-2 text-sm font-medium">发送留言</button>
             </div>
-            <div>
-              <div class="font-medium mb-1">AI助手</div>
-              <p class="text-sm text-gray-700">
-                基于李明和王华的反馈，我可以调整记忆视觉中海鸥的呈现方式，使其作为背景元素而非焦点。同时保留文本叙事中关于海鸥的部分，因为这是共享记忆的一部分。我注意到大家对日落剪影照片的记忆高度一致，这将作为视觉重点保留。
-                <br/><br/>
-                是否需要我根据这些讨论重新生成视觉叙事？
-              </p>
-              <div class="text-xs text-gray-500 mt-1">5分钟前</div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
       
@@ -297,13 +315,217 @@
         <div>
           <div class="text-xs text-gray-500 mb-1">生成状态</div>
           <div class="text-sm font-medium">
-            <span class="text-green-600">已收集 8/10 记忆片段</span>
+            <span class="text-green-600">已收集 3/10 记忆片段</span>
           </div>
         </div>
-        <button class="bg-indigo-600 text-white rounded-md px-4 py-2 text-sm font-medium flex items-center">
+        <button id="btn-add-memory" class="bg-indigo-600 text-white rounded-md px-4 py-2 text-sm font-medium flex items-center cursor-pointer">
           <i class="fas fa-plus-circle mr-1"></i>
-          添加记忆
+          生成记忆
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模态框 -->
+  <!-- 文字记忆模态框 -->
+  <div id="modal-text-memory" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg w-full max-w-md mx-4">
+      <div class="border-b border-gray-200 px-4 py-3 flex justify-between items-center">
+        <h3 class="font-medium">添加文字记忆</h3>
+        <button class="modal-close text-gray-400 hover:text-gray-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="p-4">
+        <form id="form-text-memory">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">您的名字</label>
+            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="请输入您的名字" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">记忆内容</label>
+            <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md h-32" placeholder="描述您的记忆..." required></textarea>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">情绪标签</label>
+            <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+              <option>怀念</option>
+              <option>兴奋</option>
+              <option>平静</option>
+              <option>喜悦</option>
+              <option>感动</option>
+            </select>
+          </div>
+          <div class="flex justify-end">
+            <button type="button" class="modal-close bg-gray-200 text-gray-700 rounded-md px-4 py-2 text-sm font-medium mr-2">取消</button>
+            <button type="submit" class="bg-indigo-600 text-white rounded-md px-4 py-2 text-sm font-medium">提交记忆</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 语音记忆模态框 -->
+  <div id="modal-voice-memory" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg w-full max-w-md mx-4">
+      <div class="border-b border-gray-200 px-4 py-3 flex justify-between items-center">
+        <h3 class="font-medium">添加语音记忆</h3>
+        <button class="modal-close text-gray-400 hover:text-gray-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="p-4">
+        <form id="form-voice-memory">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">您的名字</label>
+            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="请输入您的名字" required>
+          </div>
+          <div class="mb-4">
+            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+              <button type="button" id="btn-record" class="bg-green-100 text-green-700 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
+                <i class="fas fa-microphone text-xl"></i>
+              </button>
+              <p class="text-sm text-gray-600" id="recording-status">点击开始录音</p>
+              <div class="mt-2 text-xs text-gray-500 hidden" id="recording-time">00:00</div>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">情绪标签</label>
+            <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+              <option>怀念</option>
+              <option>兴奋</option>
+              <option>平静</option>
+              <option>喜悦</option>
+              <option>感动</option>
+            </select>
+          </div>
+          <div class="flex justify-end">
+            <button type="button" class="modal-close bg-gray-200 text-gray-700 rounded-md px-4 py-2 text-sm font-medium mr-2">取消</button>
+            <button type="submit" class="bg-indigo-600 text-white rounded-md px-4 py-2 text-sm font-medium">提交记忆</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 图像记忆模态框 -->
+  <div id="modal-image-memory" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg w-full max-w-md mx-4">
+      <div class="border-b border-gray-200 px-4 py-3 flex justify-between items-center">
+        <h3 class="font-medium">添加图像/素描记忆</h3>
+        <button class="modal-close text-gray-400 hover:text-gray-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="p-4">
+        <form id="form-image-memory">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">您的名字</label>
+            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="请输入您的名字" required>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">上传图像</label>
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+              <input type="file" id="image-upload" class="hidden" accept="image/*">
+              <label for="image-upload" class="cursor-pointer">
+                <div class="bg-purple-100 text-purple-700 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2">
+                  <i class="fas fa-upload"></i>
+                </div>
+                <p class="text-sm text-gray-600">点击上传图像或素描</p>
+                <p class="text-xs text-gray-500 mt-1">支持 JPG, PNG 格式</p>
+              </label>
+              <div id="image-preview" class="mt-4 hidden">
+                <img src="" alt="预览" class="max-h-40 mx-auto rounded">
+              </div>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">图像描述</label>
+            <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md h-20" placeholder="简短描述这张图像..." required></textarea>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">情绪标签</label>
+            <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+              <option>怀念</option>
+              <option>兴奋</option>
+              <option>平静</option>
+              <option>喜悦</option>
+              <option>感动</option>
+            </select>
+          </div>
+          <div class="flex justify-end">
+            <button type="button" class="modal-close bg-gray-200 text-gray-700 rounded-md px-4 py-2 text-sm font-medium mr-2">取消</button>
+            <button type="submit" class="bg-indigo-600 text-white rounded-md px-4 py-2 text-sm font-medium">提交记忆</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 生成参数编辑模态框 -->
+  <div id="modal-edit-params" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg w-full max-w-md mx-4">
+      <div class="border-b border-gray-200 px-4 py-3 flex justify-between items-center">
+        <h3 class="font-medium">编辑生成参数</h3>
+        <button class="modal-close text-gray-400 hover:text-gray-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="p-4">
+        <form id="form-edit-params">
+          <!-- 叙事风格 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">叙事风格</label>
+            <select id="select-narrative-style" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+              <option value="抒情回忆式">抒情回忆式</option>
+              <option value="客观记录式">客观记录式</option>
+              <option value="对话交流式">对话交流式</option>
+              <option value="故事化叙事">故事化叙事</option>
+              <option value="诗意描述">诗意描述</option>
+            </select>
+          </div>
+          
+          <!-- 视觉风格 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">视觉风格</label>
+            <select id="select-visual-style" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+              <option value="写实水彩">写实水彩</option>
+              <option value="抽象艺术">抽象艺术</option>
+              <option value="素描风格">素描风格</option>
+              <option value="复古照片">复古照片</option>
+              <option value="动漫风格">动漫风格</option>
+            </select>
+          </div>
+          
+          <!-- 情感基调 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">情感基调</label>
+            <select id="select-emotional-tone" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+              <option value="怀旧、温暖">怀旧、温暖</option>
+              <option value="欢快、活力">欢快、活力</option>
+              <option value="平静、沉思">平静、沉思</option>
+              <option value="惊奇、好奇">惊奇、好奇</option>
+              <option value="混合情感">混合情感</option>
+            </select>
+          </div>
+          
+          <!-- 冲突处理 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2">冲突处理</label>
+            <select id="select-conflict-handling" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+              <option value="保留差异并列呈现">保留差异并列呈现</option>
+              <option value="融合为统一叙事">融合为统一叙事</option>
+              <option value="突出主流记忆">突出主流记忆</option>
+              <option value="创造性调和">创造性调和</option>
+              <option value="多视角切换">多视角切换</option>
+            </select>
+          </div>
+          
+          <div class="flex justify-end">
+            <button type="button" class="modal-close bg-gray-200 text-gray-700 rounded-md px-4 py-2 text-sm font-medium mr-2">取消</button>
+            <button type="submit" class="bg-indigo-600 text-white rounded-md px-4 py-2 text-sm font-medium">保存设置</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -350,6 +572,341 @@
       document.getElementById('tab-' + tabName).classList.add('tab-active');
       document.getElementById('tab-' + tabName).classList.remove('text-gray-500');
     }
+
+    // 模态框相关功能
+    // 打开模态框函数
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // 防止背景滚动
+    }
+
+    // 关闭模态框函数
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // 关闭所有模态框
+    function closeAllModals() {
+      const modals = document.querySelectorAll('[id^="modal-"]');
+      modals.forEach(modal => {
+        modal.classList.add('hidden');
+      });
+      document.body.style.overflow = '';
+    }
+
+    // 为所有关闭按钮添加事件
+    document.querySelectorAll('.modal-close').forEach(button => {
+      button.addEventListener('click', function() {
+        closeAllModals();
+      });
+    });
+
+    // 点击模态框背景关闭模态框
+    document.querySelectorAll('[id^="modal-"]').forEach(modal => {
+      modal.addEventListener('click', function(event) {
+        if (event.target === this) {
+          closeAllModals();
+        }
+      });
+    });
+
+    // 添加记忆按钮点击事件
+    document.getElementById('btn-text-memory').addEventListener('click', function() {
+      openModal('modal-text-memory');
+    });
+
+    document.getElementById('btn-voice-memory').addEventListener('click', function() {
+      openModal('modal-voice-memory');
+    });
+
+    document.getElementById('btn-image-memory').addEventListener('click', function() {
+      openModal('modal-image-memory');
+    });
+
+    // 底部添加记忆按钮点击事件
+    document.getElementById('btn-add-memory').addEventListener('click', function() {
+      // 创建加载状态显示
+      const loadingOverlay = document.createElement('div');
+      loadingOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+      loadingOverlay.innerHTML = `
+        <div class="bg-white rounded-lg p-6 flex flex-col items-center">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mb-4"></div>
+          <p class="text-lg font-medium">正在生成集体记忆...</p>
+          <p class="text-sm text-gray-500 mt-1"><span id="loading-progress">0</span>/10 </p>
+        </div>
+      `;
+      document.body.appendChild(loadingOverlay);
+      
+      // 模拟加载进度
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress++;
+        document.getElementById('loading-progress').textContent = progress;
+        
+        if (progress >= 10) {
+          // 清除定时器
+          clearInterval(progressInterval);
+          
+          // 移除加载层
+          document.body.removeChild(loadingOverlay);
+          
+          // 切换到编织成果标签页
+          showView('woven');
+          setActiveTab('woven');
+        }
+      }, 1000);
+    });
+
+    // 图像上传预览
+    const imageUpload = document.getElementById('image-upload');
+    const imagePreview = document.getElementById('image-preview');
+    
+    if (imageUpload) {
+      imageUpload.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+            imagePreview.querySelector('img').src = e.target.result;
+            imagePreview.classList.remove('hidden');
+          };
+          
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+    }
+
+    // 录音按钮功能模拟
+    const recordButton = document.getElementById('btn-record');
+    const recordingStatus = document.getElementById('recording-status');
+    const recordingTime = document.getElementById('recording-time');
+    let isRecording = false;
+    let recordingInterval;
+    let seconds = 0;
+    
+    if (recordButton) {
+      recordButton.addEventListener('click', function() {
+        if (!isRecording) {
+          // 开始录音
+          isRecording = true;
+          recordButton.innerHTML = '<i class="fas fa-stop text-xl"></i>';
+          recordButton.classList.remove('bg-green-100', 'text-green-700');
+          recordButton.classList.add('bg-red-100', 'text-red-700');
+          recordingStatus.textContent = '正在录音...';
+          recordingTime.classList.remove('hidden');
+          
+          // 计时器
+          seconds = 0;
+          updateRecordingTime();
+          recordingInterval = setInterval(updateRecordingTime, 1000);
+        } else {
+          // 停止录音
+          isRecording = false;
+          recordButton.innerHTML = '<i class="fas fa-microphone text-xl"></i>';
+          recordButton.classList.remove('bg-red-100', 'text-red-700');
+          recordButton.classList.add('bg-green-100', 'text-green-700');
+          recordingStatus.textContent = '录音完成 (' + formatTime(seconds) + ')';
+          
+          clearInterval(recordingInterval);
+        }
+      });
+    }
+    
+    function updateRecordingTime() {
+      seconds++;
+      recordingTime.textContent = formatTime(seconds);
+    }
+    
+    function formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    }
+
+    // 表单提交处理
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // 处理生成参数编辑表单
+        if (this.id === 'form-edit-params') {
+          // 获取选择的值
+          const narrativeStyle = document.getElementById('select-narrative-style').value;
+          const visualStyle = document.getElementById('select-visual-style').value;
+          const emotionalTone = document.getElementById('select-emotional-tone').value;
+          const conflictHandling = document.getElementById('select-conflict-handling').value;
+          
+          // 更新显示的值
+          document.getElementById('narrative-style-value').textContent = narrativeStyle;
+          document.getElementById('visual-style-value').textContent = visualStyle;
+          document.getElementById('emotional-tone-value').textContent = emotionalTone;
+          document.getElementById('conflict-handling-value').textContent = conflictHandling;
+          
+          // 关闭模态框
+          closeAllModals();
+        } 
+        // 处理聊天表单提交
+        else if (this.id === 'chat-form') {
+          // 获取用户输入
+          const name = document.getElementById('chat-name').value;
+          const message = document.getElementById('chat-message').value;
+          
+          if (name && message) {
+            // 创建新的聊天消息
+            addChatMessage(name, message);
+            
+            // 清空输入框
+            document.getElementById('chat-message').value = '';
+          }
+        }
+        else {
+          // 其他表单的处理
+          alert('记忆已提交！在实际应用中，这里会将数据发送到服务器。');
+          
+          // 关闭模态框
+          closeAllModals();
+        }
+      });
+    });
+    
+    // 生成参数编辑按钮点击事件
+    document.getElementById('btn-edit-params').addEventListener('click', function() {
+      openModal('modal-edit-params');
+    });
+    
+    // 各个参数项点击事件
+    document.getElementById('param-narrative-style').addEventListener('click', function() {
+      openModal('modal-edit-params');
+      document.getElementById('select-narrative-style').focus();
+    });
+    
+    document.getElementById('param-visual-style').addEventListener('click', function() {
+      openModal('modal-edit-params');
+      document.getElementById('select-visual-style').focus();
+    });
+    
+    document.getElementById('param-emotional-tone').addEventListener('click', function() {
+      openModal('modal-edit-params');
+      document.getElementById('select-emotional-tone').focus();
+    });
+    
+    document.getElementById('param-conflict-handling').addEventListener('click', function() {
+      openModal('modal-edit-params');
+      document.getElementById('select-conflict-handling').focus();
+    });
+    
+    // 添加聊天消息函数
+    function addChatMessage(name, message) {
+      // 获取聊天消息容器
+      const chatMessages = document.getElementById('chat-messages');
+      
+      // 创建新消息元素
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'flex items-start mb-4';
+      
+      // 生成随机背景色
+      const colors = ['blue', 'purple', 'green', 'red', 'yellow', 'indigo', 'pink'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      
+      // 获取名字首字母
+      const initial = name.charAt(0);
+      
+      // 创建头像
+      const avatar = document.createElement('div');
+      avatar.className = `bg-${randomColor}-100 h-8 w-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0`;
+      avatar.innerHTML = `<span class="text-${randomColor}-800 font-medium text-sm">${initial}</span>`;
+      
+      // 创建消息内容
+      const contentDiv = document.createElement('div');
+      
+      // 添加用户名
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'font-medium mb-1';
+      nameDiv.textContent = name;
+      
+      // 添加消息文本
+      const messageP = document.createElement('p');
+      messageP.className = 'text-sm text-gray-700';
+      messageP.textContent = message;
+      
+      // 添加时间
+      const timeDiv = document.createElement('div');
+      timeDiv.className = 'text-xs text-gray-500 mt-1';
+      timeDiv.textContent = '刚刚';
+      
+      // 组装消息
+      contentDiv.appendChild(nameDiv);
+      contentDiv.appendChild(messageP);
+      contentDiv.appendChild(timeDiv);
+      
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(contentDiv);
+      
+      // 添加到聊天容器
+      chatMessages.appendChild(messageDiv);
+      
+      // 滚动到底部
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // 冲突与差异处理函数
+    function handleConflictResolution(button, status, message) {
+      // 获取当前冲突项容器
+      const conflictItem = button.closest('.p-4');
+      
+      // 更新状态
+      const statusBadge = document.createElement('span');
+      statusBadge.className = 'bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full ml-2';
+      statusBadge.textContent = status;
+      
+      // 添加状态标签到标题旁
+      const title = conflictItem.querySelector('h3');
+      title.appendChild(statusBadge);
+      
+      // 禁用按钮
+      const buttons = conflictItem.querySelectorAll('button');
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+      });
+      
+      // 添加处理结果消息
+      const resultDiv = document.createElement('div');
+      resultDiv.className = 'mt-3 text-sm text-gray-700 bg-blue-50 p-3 rounded-md';
+      resultDiv.textContent = message;
+      conflictItem.querySelector('.flex.space-x-2').after(resultDiv);
+      
+      // 显示成功提示
+      alert('操作成功！' + message);
+    }
+    
+    // 为冲突解决按钮添加点击事件
+    document.addEventListener('DOMContentLoaded', function() {
+      // 获取所有冲突项
+      const conflictItems = document.querySelectorAll('.border.border-gray-200.rounded-lg .p-4');
+      
+      // 为每个冲突项添加按钮点击事件
+      conflictItems.forEach(item => {
+        // 获取协商解决按钮
+        const negotiateBtn = item.querySelector('button.bg-indigo-600');
+        if (negotiateBtn) {
+          negotiateBtn.addEventListener('click', function() {
+            // 获取冲突描述文本
+            const conflictText = item.querySelector('.text-sm.text-gray-700').textContent.trim();
+            handleConflictResolution(this, '已协商', '冲突已通过协商解决。各方达成共识，融合了不同的记忆视角。');
+          });
+        }
+        
+        // 获取保留差异按钮
+        const keepDiffBtn = item.querySelector('button.border.border-gray-300');
+        if (keepDiffBtn) {
+          keepDiffBtn.addEventListener('click', function() {
+            handleConflictResolution(this, '已保留', '差异已被保留。最终呈现将展示多种记忆视角。');
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>
